@@ -1,0 +1,144 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "name": "AdamAsmaca adlı not defterinin kopyası",
+      "provenance": [],
+      "collapsed_sections": [],
+      "authorship_tag": "ABX9TyPgfdZG1Iesy17xOdt0DJVD",
+      "include_colab_link": true
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    },
+    "language_info": {
+      "name": "python"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "view-in-github",
+        "colab_type": "text"
+      },
+      "source": [
+        "<a href=\"https://colab.research.google.com/github/sevvalcinarr/hu-bby162-2022/blob/main/proje02\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "from random import choice\n",
+        "\n",
+        "kalanDeneme = 3\n",
+        "\n",
+        "basitKelimeler = [\"tuş\", \"baskın\", \"özgür\", \"pamuk\", \"bebek\"]\n",
+        "ortaKelimeler = [\"lolipop\", \"program\", \"sandalye\", \"kulaklık\", \"origami\"]\n",
+        "ileriKelimeler = [\"atıştırma\", \"entelektüel\", \"gökkuşağı\", \"navigasyon\"]\n",
+        "\n",
+        "kelimeGruplari = [basitKelimeler, ortaKelimeler, ileriKelimeler]\n",
+        "\n",
+        "kararVerilmedi = True\n",
+        "\n",
+        "print(\"Adam Asmacaya hoşgeldiniz.\")\n",
+        "print(\"Sayı ile aşağıdaki zorluklardan birini seçiniz.\")\n",
+        "print(\"[1] Basit\")\n",
+        "print(\"[2] Orta\")\n",
+        "print(\"[3] İleri\")\n",
+        "while (kararVerilmedi):\n",
+        "    secilenZorluk = input(\"Sayı giriniz (Örneğin basit için 1): \")\n",
+        "    if secilenZorluk == \"1\":\n",
+        "        print(\"Basit seviye seçildi.\")\n",
+        "        kararVerilmedi = False\n",
+        "    elif secilenZorluk == \"2\":\n",
+        "        print(\"Orta seviye seçildi.\")\n",
+        "        kararVerilmedi = False\n",
+        "    elif secilenZorluk == \"3\":\n",
+        "        print(\"İleri seviye seçildi.\")\n",
+        "        kararVerilmedi = False\n",
+        "    else:\n",
+        "        print(\"Girdi anlaşılmadı.\")\n",
+        "        \n",
+        "secilenKelime = choice(kelimeGruplari[int(secilenZorluk) - 1])\n",
+        "\n",
+        "bulunanKelime = []\n",
+        "for karakter in secilenKelime:\n",
+        "    bulunanKelime.append(\"_\")\n",
+        "oyunDevamEtmekte = True\n",
+        "\n",
+        "while oyunDevamEtmekte:\n",
+        "    print(bulunanKelime)\n",
+        "    tekKarakterGirilmedi = True\n",
+        "    while tekKarakterGirilmedi:\n",
+        "        girilenKarakter = input(\"Karakter giriniz: \")\n",
+        "        if len(girilenKarakter) != 1:\n",
+        "            print(\"Tek bir harf girilmesi lazım.\")\n",
+        "        else:\n",
+        "            tekKarakterGirilmedi = False\n",
+        "    \n",
+        "    tahminTesti = girilenKarakter in secilenKelime\n",
+        "    if tahminTesti == False:\n",
+        "        kalanDeneme -= 1\n",
+        "        print(\"Yanlış!\")\n",
+        "        if kalanDeneme <= 0:\n",
+        "            print(\"Kaybettiniz.\")\n",
+        "            oyunDevamEtmekte = False\n",
+        "            break\n",
+        "    else:\n",
+        "        print(\"Doğru!\")\n",
+        "            \n",
+        "    print(\"Kalan hakkınız \", kalanDeneme)\n",
+        "\n",
+        "    for i in range(len(secilenKelime)):\n",
+        "        if secilenKelime[i] == girilenKarakter:\n",
+        "            bulunanKelime[i] = girilenKarakter\n",
+        "            \n",
+        "    harfKaldimi = \"_\" in bulunanKelime\n",
+        "    if not harfKaldimi:\n",
+        "        print(\"Kazandınız!\")\n",
+        "        oyunDevamEtmekte = False\n",
+        "        break\n"
+      ],
+      "metadata": {
+        "id": "D2nyVizAVCJy",
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "outputId": "caeed90e-dfa6-4796-a852-0967fe881b41"
+      },
+      "execution_count": 1,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Adam Asmacaya hoşgeldiniz.\n",
+            "Sayı ile aşağıdaki zorluklardan birini seçiniz.\n",
+            "[1] Basit\n",
+            "[2] Orta\n",
+            "[3] İleri\n",
+            "Sayı giriniz (Örneğin basit için 1): \n",
+            "Girdi anlaşılmadı.\n",
+            "Sayı giriniz (Örneğin basit için 1): 1\n",
+            "Basit seviye seçildi.\n",
+            "['_', '_', '_']\n",
+            "Karakter giriniz: l\n",
+            "Yanlış!\n",
+            "Kalan hakkınız  2\n",
+            "['_', '_', '_']\n",
+            "Karakter giriniz: a\n",
+            "Yanlış!\n",
+            "Kalan hakkınız  1\n",
+            "['_', '_', '_']\n",
+            "Karakter giriniz: k\n",
+            "Yanlış!\n",
+            "Kaybettiniz.\n"
+          ]
+        }
+      ]
+    }
+  ]
+}
